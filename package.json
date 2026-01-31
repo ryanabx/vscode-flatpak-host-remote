@@ -1,0 +1,89 @@
+{
+  "name": "flatpak-host-remote",
+  "displayName": "Remote - Flatpak Host",
+  "description": "Host development for the Flatpak build of VS Code",
+  "version": "1.0.0",
+  "publisher": "ryanabx",
+  "license": "GPL-3.0-or-later",
+  "enabledApiProposals": [
+    "resolvers",
+    "tunnels"
+  ],
+  "private": true,
+  "engines": {
+    "vscode": "^1.108.0"
+  },
+  "icon": "icon.png",
+  "extensionKind": [
+    "ui"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npx -y @vscode/dts dev && npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npx -y @vscode/dts dev && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "activationEvents": [
+    "onResolveRemoteAuthority:flatpakhost"
+  ],
+  "main": "./out/extension",
+  "devDependencies": {
+    "@types/vscode": "^1.108",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.52.0",
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "contributes": {
+    "resourceLabelFormatters": [
+      {
+        "scheme": "vscode-remote",
+        "authority": "flatpakhost+*",
+        "formatting": {
+          "label": "${path}",
+          "separator": "/",
+          "tildify": true,
+          "workspaceSuffix": "Flatpak Host System",
+          "workspaceTooltip": "Running on the host system"
+        }
+      }
+    ],
+    "commands": [
+      {
+        "title": "Connect to Host in New Window",
+        "category": "Flatpak-Host",
+        "command": "flatpak-hostremote.newWindow"
+      },
+      {
+        "title": "Connect to Host in Current Window",
+        "category": "Flatpak-Host",
+        "command": "flatpak-hostremote.currentWindow"
+      },
+      {
+        "title": "Connect to Host in Current Window with Managed Connection",
+        "category": "Flatpak-Host",
+        "command": "flatpak-hostremote.currentWindowManaged"
+      },
+      {
+        "title": "Show Flatpak Host Log",
+        "category": "Flatpak-Host",
+        "command": "flatpak-hostremote.showLog"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryanabx/flatpak-host-remote-extension.git"
+  }
+}
