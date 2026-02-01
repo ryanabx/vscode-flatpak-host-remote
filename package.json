@@ -2,9 +2,9 @@
   "name": "flatpak-host-remote",
   "displayName": "Remote - Flatpak Host",
   "description": "Host development for the Flatpak build of VS Code",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "publisher": "ryanabx",
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
   "enabledApiProposals": [
     "resolvers",
     "tunnels"
@@ -54,7 +54,7 @@
           "label": "${path}",
           "separator": "/",
           "tildify": true,
-          "workspaceSuffix": "Sandbox Exited (Flatpak)",
+          "workspaceSuffix": "Host System (Flatpak)",
           "workspaceTooltip": "Running on the host system"
         }
       }
@@ -93,6 +93,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ryanabx/flatpak-host-remote-extension.git"
+    "url": "https://github.com/ryanabx/vscode-flatpak-host-remote.git"
   }
 }
