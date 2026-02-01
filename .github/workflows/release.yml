@@ -1,0 +1,56 @@
+name: Release with Artifacts
+
+on:
+  push:
+    tags:
+      - 'v*' # Triggers on tag pushes that start with 'v', e.g., v1.0.0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22' # Use a relevant Node.js version
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Package extension
+        run: npx vsce package
+          
+      - name: Upload workflow artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-assets
+          path: '*.vsix'
+
+  release:
+    needs: build # Ensures this job runs after the build job is successful
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Grant write permission for creating the release and uploading assets
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download workflow artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-assets
+          path: my_app/build/ # Download artifacts to this path
+
+      - name: Create or Update Release and Upload Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            my_app/build/release-assets
+          draft: false # Set to true to create a draft release
+          prerelease: false # Set to true for a pre-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

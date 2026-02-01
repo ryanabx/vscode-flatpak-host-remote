@@ -14,6 +14,8 @@ This extension makes use of two [VSCode API proposals](https://code.visualstudio
 }
 ```
 
+> **NOTE:** This also means that I cannot upload the extension to the Microsoft Extension Registry as they do not allow extensions that use API proposals.
+
 ## How does this work?
 
 This extension will download the vscode-server resources to `$HOME/.vscode-server-flatpak`, and invoke it with `flatpak-spawn --host`. The server will expose itself over `LOCALHOST`, and the VSCode Flatpak will connect to `LOCALHOST`.
