@@ -54,33 +54,42 @@
           "label": "${path}",
           "separator": "/",
           "tildify": true,
-          "workspaceSuffix": "Flatpak Host System",
+          "workspaceSuffix": "Sandbox Exited (Flatpak)",
           "workspaceTooltip": "Running on the host system"
         }
       }
     ],
     "commands": [
       {
-        "title": "Connect to Host in New Window",
-        "category": "Flatpak-Host",
+        "title": "Connect to Host in New Window (Exit Sandbox)",
+        "category": "Flatpak Host",
         "command": "flatpak-hostremote.newWindow"
       },
       {
-        "title": "Connect to Host in Current Window",
-        "category": "Flatpak-Host",
+        "title": "Connect to Host in Current Window (Exit Sandbox)",
+        "category": "Flatpak Host",
         "command": "flatpak-hostremote.currentWindow"
       },
       {
-        "title": "Connect to Host in Current Window with Managed Connection",
-        "category": "Flatpak-Host",
-        "command": "flatpak-hostremote.currentWindowManaged"
-      },
-      {
         "title": "Show Flatpak Host Log",
-        "category": "Flatpak-Host",
+        "category": "Flatpak Host",
         "command": "flatpak-hostremote.showLog"
       }
-    ]
+    ],
+    "menus": {
+      "statusBar/remoteIndicator": [
+        {
+          "command": "flatpak-hostremote.currentWindow",
+          "when": "!remoteName && !virtualWorkspace",
+          "group": "remote_90_test_1_@1"
+        },
+        {
+          "command": "flatpak-hostremote.newWindow",
+          "when": "!remoteName && !virtualWorkspace",
+          "group": "remote_90_test_1_@2"
+        }
+      ]
+    }
   },
   "repository": {
     "type": "git",
