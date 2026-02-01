@@ -43,13 +43,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: release-assets
-          path: my_app/build/ # Download artifacts to this path
+          path: my_app/build/flatpak-host-remote-${{ github.ref }}.zip # Download artifacts to this path
 
       - name: Create or Update Release and Upload Assets
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            my_app/build/release-assets
+            my_app/build/flatpak-host-remote-${{ github.ref }}.zip
           draft: false # Set to true to create a draft release
           prerelease: false # Set to true for a pre-release
         env:
