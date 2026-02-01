@@ -29,7 +29,7 @@ This extension makes use of two [VSCode API proposals](https://code.visualstudio
 
 Start VSCode, and you should see the Flatpak Sandbox Exit options in the remote picker:
 
-![Remote picker options](tutorial2.png)
+![Remote picker options](media/tutorial2.png)
 
 ## How does this work?
 
