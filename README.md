@@ -41,4 +41,4 @@ The extension will also exit if it's not within a flatpak environment, so it's s
 
 ## License
 
-This extension is licensed under the GPL-3.0-or-later license. Portions of the code are derived from Visual Studio Code written by Microsoft under the MIT license.
+This extension is licensed under the MIT license. Portions of the code are derived from Visual Studio Code written by Microsoft under the MIT license.
