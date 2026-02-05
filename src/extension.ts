@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-License-Identifier: MIT
 // SPDX-FileCopyrightText: 2025 Ryan Brue <ryanbrue.dev@gmail.com>
 
 import * as vscode from 'vscode';
